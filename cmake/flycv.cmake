@@ -45,6 +45,8 @@ if(ANDROID)
   endif()  
 endif()
 
+
+message(STATUS "---flycv:49 WIN32:${WIN32}  APPLE:${APPLE}  ANDROID:${ANDROID}---")
 if(WIN32)
   set(FLYCV_COMPILE_LIB
       "${FLYCV_INSTALL_DIR}/lib/flycv.lib"
@@ -58,6 +60,7 @@ elseif(ANDROID)
   "${FLYCV_INSTALL_DIR}/lib/${ANDROID_ABI}/libflycv_shared.so"
   CACHE FILEPATH "flycv compile library." FORCE)   
 else()
+  message(STATUS "flycv:63  FLYCV_COMPILE_LIB:${FLYCV_COMPILE_LIB}")
   set(FLYCV_COMPILE_LIB
       "${FLYCV_INSTALL_DIR}/lib/libflycv_shared.so"
       CACHE FILEPATH "flycv compile library." FORCE)
@@ -86,6 +89,8 @@ else()
       set(FLYCV_FILE "flycv-linux-aarch64-${FLYCV_VERSION}.tgz")
     elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "arm")
       set(FLYCV_FILE "flycv-linux-armhf-${FLYCV_VERSION}.tgz")
+    elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "csky")
+      set(FLYCV_FILE "flycv-linux-csky-${FLYCV_VERSION}.tgz")
     else()
       set(FLYCV_FILE "flycv-linux-x64-${FLYCV_VERSION}.tgz")
     endif()
